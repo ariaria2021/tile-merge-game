@@ -11,37 +11,46 @@ export const Header: React.FC<Props> = ({ score, onReset }) => {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            marginBottom: '20px',
+            marginBottom: '30px',
             width: '100%',
             maxWidth: '500px',
-            margin: '0 auto 20px',
+            margin: '0 auto 30px',
             padding: '0 10px'
         }}>
-            <h1 style={{ fontSize: '40px', fontWeight: 'bold', color: '#776e65', margin: 0 }}>2048</h1>
+            <h1 style={{
+                fontSize: '32px',
+                fontWeight: '800',
+                color: '#1f2937',
+                margin: 0,
+                letterSpacing: '-0.025em'
+            }}>2048</h1>
 
-            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
                 <div style={{
-                    background: '#bbada0',
-                    padding: '10px 20px',
-                    borderRadius: '3px',
-                    color: 'white',
-                    textAlign: 'center'
+                    background: '#e5e7eb',
+                    padding: '8px 16px',
+                    borderRadius: '6px',
+                    color: '#374151',
+                    textAlign: 'center',
+                    minWidth: '80px'
                 }}>
-                    <div style={{ fontSize: '13px', color: '#eee4da' }}>SCORE</div>
-                    <div style={{ fontSize: '20px', fontWeight: 'bold' }}>{score}</div>
+                    <div style={{ fontSize: '11px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em' }}>SCORE</div>
+                    <div style={{ fontSize: '18px', fontWeight: '700' }}>{score}</div>
                 </div>
 
                 <button
                     onClick={onReset}
                     style={{
-                        background: '#8f7a66',
+                        background: '#8b5cf6',
                         color: 'white',
                         border: 'none',
-                        borderRadius: '3px',
+                        borderRadius: '6px',
                         padding: '10px 20px',
-                        fontSize: '16px',
-                        fontWeight: 'bold',
-                        cursor: 'pointer'
+                        fontSize: '14px',
+                        fontWeight: '600',
+                        cursor: 'pointer',
+                        transition: 'background 0.2s',
+                        boxShadow: '0 4px 6px -1px rgba(139, 92, 246, 0.4)'
                     }}
                 >
                     New Game

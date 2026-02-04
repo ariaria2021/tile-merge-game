@@ -1,82 +1,88 @@
 /* Tile.module.css */
 .tile {
     position: absolute;
-    width: calc(25% - 15px * 3 / 4);
-    /* (100% - gap * 3) / 4 */
-    height: calc(25% - 15px * 3 / 4);
-    background-color: #eee4da;
-    border-radius: 3px;
-    font-weight: bold;
-    font-size: 55px;
+    /* width, height, positionはコンポーネントのstyle属性で制御 */
+    background-color: #f3f4f6;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 48px;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 100ms ease-in-out;
-    color: #776e65;
+    transition: top 150ms ease-in-out, left 150ms ease-in-out;
+    color: #1f2937;
     z-index: 10;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* タイルの位置計算 */
-/* transformで位置を指定するため、JS側で計算しても良いがCSS変数も便利 */
-/* ここではJSのインラインスタイルで transform: translate(X, Y) を制御する前提 */
-
-/* 数字ごとの色設定 */
+/* 数字ごとの色設定 (Purple Scale) */
 .tile2 {
-    background-color: #eee4da;
+    background-color: #ffffff;
+    color: #4b5563;
 }
 
 .tile4 {
-    background-color: #ede0c8;
+    background-color: #f3f4f6;
+    color: #4b5563;
 }
 
 .tile8 {
-    background-color: #f2b179;
-    color: #f9f6f2;
+    background-color: #e9d5ff;
+    color: #6b21a8;
 }
 
+/* Purple 200 */
 .tile16 {
-    background-color: #f59563;
-    color: #f9f6f2;
+    background-color: #d8b4fe;
+    color: #6b21a8;
 }
 
+/* Purple 300 */
 .tile32 {
-    background-color: #f67c5f;
-    color: #f9f6f2;
+    background-color: #c084fc;
+    color: #ffffff;
 }
 
+/* Purple 400 */
 .tile64 {
-    background-color: #f65e3b;
-    color: #f9f6f2;
+    background-color: #a855f7;
+    color: #ffffff;
 }
 
+/* Purple 500 */
 .tile128 {
-    background-color: #edcf72;
-    color: #f9f6f2;
-    font-size: 45px;
+    background-color: #9333ea;
+    color: #ffffff;
+    font-size: 40px;
 }
 
+/* Purple 600 */
 .tile256 {
-    background-color: #edcc61;
-    color: #f9f6f2;
-    font-size: 45px;
+    background-color: #7e22ce;
+    color: #ffffff;
+    font-size: 40px;
 }
 
+/* Purple 700 */
 .tile512 {
-    background-color: #edc850;
-    color: #f9f6f2;
-    font-size: 45px;
+    background-color: #6b21a8;
+    color: #ffffff;
+    font-size: 40px;
 }
 
+/* Purple 800 */
 .tile1024 {
-    background-color: #edc53f;
-    color: #f9f6f2;
-    font-size: 35px;
+    background-color: #581c87;
+    color: #ffffff;
+    font-size: 32px;
 }
 
+/* Purple 900 */
 .tile2048 {
-    background-color: #edc22e;
-    color: #f9f6f2;
-    font-size: 35px;
+    background-color: #3b0764;
+    color: #ffffff;
+    font-size: 32px;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
 }
 
 /* 新規タイル出現アニメーション */
@@ -107,7 +113,7 @@
     }
 
     50% {
-        transform: scale(1.2);
+        transform: scale(1.1);
     }
 
     100% {
@@ -117,8 +123,6 @@
 
 @media (max-width: 520px) {
     .tile {
-        width: calc(25% - 10px * 3 / 4);
-        height: calc(25% - 10px * 3 / 4);
-        font-size: 35px;
+        font-size: 32px;
     }
 }
