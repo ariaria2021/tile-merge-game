@@ -7,7 +7,7 @@ import { isGameOver } from './utils/gridUtils';
 import './App.css';
 
 function App() {
-  const { grid, move, resetGrid, scoreIncrease } = useGrid();
+  const { grid, move, resetGrid } = useGrid();
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [finished, setFinished] = useState(false);
@@ -18,20 +18,6 @@ function App() {
     if (saved) setBestScore(parseInt(saved, 10));
   }, []);
 
-  // スコア更新
-  useEffect(() => {
-    if (scoreIncrease > 0) {
-      setScore(s => {
-        const newScore = s + scoreIncrease;
-        if (newScore > bestScore) {
-          setBestScore(newScore);
-          localStorage.setItem('tile-merge-best-score', newScore.toString());
-        }
-        return newScore;
-      });
-    }
-  }, [scoreIncrease, bestScore]);
-
   // ゲームオーバー判定
   useEffect(() => {
     if (isGameOver(grid)) {
@@ -40,6 +26,20 @@ function App() {
       setFinished(false);
     }
   }, [grid]);
+
+  // スコア更新処理（共通化）
+  const updateScore = (addedScore: number) => {
+    if (addedScore > 0) {
+      setScore(s => {
+        const newScore = s + addedScore;
+        if (newScore > bestScore) {
+          setBestScore(newScore);
+          localStorage.setItem('tile-merge-best-score', newScore.toString());
+        }
+        return newScore;
+      });
+    }
+  };
 
   // リセット処理
   const handleReset = () => {
@@ -53,29 +53,37 @@ function App() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (finished) return;
 
+      let result = { moved: false, score: 0 };
+
       switch (e.key) {
         case 'ArrowUp':
-          move('UP');
+          result = move('UP');
           e.preventDefault();
           break;
         case 'ArrowDown':
-          move('DOWN');
+          result = move('DOWN');
           e.preventDefault();
           break;
         case 'ArrowLeft':
-          move('LEFT');
+          result = move('LEFT');
           e.preventDefault();
           break;
         case 'ArrowRight':
-          move('RIGHT');
+          result = move('RIGHT');
           e.preventDefault();
           break;
+        default:
+          return;
+      }
+
+      if (result.moved) {
+        updateScore(result.score);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [move, finished]);
+  }, [move, finished, bestScore]); // updateScoreは依存に含めたいが、関数内でstate使うのでbestScoreへのアクセス注意。今回はsetterのcallback内で処理してるのでOK。
 
   // タッチ操作（簡易実装）
   // TODO: 本格的なスワイプ検知にはライブラリを使うと良いが、
@@ -98,11 +106,13 @@ function App() {
 
     if (Math.abs(diffX) > Math.abs(diffY)) {
       if (Math.abs(diffX) > threshold) {
-        move(diffX > 0 ? 'RIGHT' : 'LEFT');
+        const result = move(diffX > 0 ? 'RIGHT' : 'LEFT');
+        if (result.moved) updateScore(result.score);
       }
     } else {
       if (Math.abs(diffY) > threshold) {
-        move(diffY > 0 ? 'DOWN' : 'UP');
+        const result = move(diffY > 0 ? 'DOWN' : 'UP');
+        if (result.moved) updateScore(result.score);
       }
     }
     setTouchStart(null);
