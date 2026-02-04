@@ -1,0 +1,124 @@
+/* Tile.module.css */
+.tile {
+    position: absolute;
+    width: calc(25% - 15px * 3 / 4);
+    /* (100% - gap * 3) / 4 */
+    height: calc(25% - 15px * 3 / 4);
+    background-color: #eee4da;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 100ms ease-in-out;
+    color: #776e65;
+    z-index: 10;
+}
+
+/* タイルの位置計算 */
+/* transformで位置を指定するため、JS側で計算しても良いがCSS変数も便利 */
+/* ここではJSのインラインスタイルで transform: translate(X, Y) を制御する前提 */
+
+/* 数字ごとの色設定 */
+.tile2 {
+    background-color: #eee4da;
+}
+
+.tile4 {
+    background-color: #ede0c8;
+}
+
+.tile8 {
+    background-color: #f2b179;
+    color: #f9f6f2;
+}
+
+.tile16 {
+    background-color: #f59563;
+    color: #f9f6f2;
+}
+
+.tile32 {
+    background-color: #f67c5f;
+    color: #f9f6f2;
+}
+
+.tile64 {
+    background-color: #f65e3b;
+    color: #f9f6f2;
+}
+
+.tile128 {
+    background-color: #edcf72;
+    color: #f9f6f2;
+    font-size: 45px;
+}
+
+.tile256 {
+    background-color: #edcc61;
+    color: #f9f6f2;
+    font-size: 45px;
+}
+
+.tile512 {
+    background-color: #edc850;
+    color: #f9f6f2;
+    font-size: 45px;
+}
+
+.tile1024 {
+    background-color: #edc53f;
+    color: #f9f6f2;
+    font-size: 35px;
+}
+
+.tile2048 {
+    background-color: #edc22e;
+    color: #f9f6f2;
+    font-size: 35px;
+}
+
+/* 新規タイル出現アニメーション */
+.newTile {
+    animation: appear 200ms ease;
+}
+
+/* マージアニメーション */
+.mergedTile {
+    animation: pop 200ms ease;
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 520px) {
+    .tile {
+        width: calc(25% - 10px * 3 / 4);
+        height: calc(25% - 10px * 3 / 4);
+        font-size: 35px;
+    }
+}
