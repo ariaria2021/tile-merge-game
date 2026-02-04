@@ -12,12 +12,6 @@ function App() {
   const [bestScore, setBestScore] = useState(0);
   const [finished, setFinished] = useState(false);
 
-  // ハイスコア読み込み
-  useEffect(() => {
-    const saved = localStorage.getItem('tile-merge-best-score');
-    if (saved) setBestScore(parseInt(saved, 10));
-  }, []);
-
   // ゲームオーバー判定
   useEffect(() => {
     if (isGameOver(grid)) {
@@ -34,7 +28,6 @@ function App() {
         const newScore = s + addedScore;
         if (newScore > bestScore) {
           setBestScore(newScore);
-          localStorage.setItem('tile-merge-best-score', newScore.toString());
         }
         return newScore;
       });
