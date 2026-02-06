@@ -15,10 +15,10 @@ export const Header: React.FC<Props> = ({ score, onReset }) => {
             width: '100%',
             maxWidth: '500px',
             margin: '0 auto 30px',
-            padding: '0 10px'
+            padding: '0'
         }}>
             <h1 style={{
-                fontSize: '32px',
+                fontSize: '28px',
                 fontWeight: '800',
                 color: '#1f2937',
                 margin: 0,
