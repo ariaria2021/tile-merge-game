@@ -13,7 +13,8 @@ body {
 .app-container {
   width: 100%;
   max-width: 520px;
-  padding: 20px;
+  padding: 20px 10px;
+  box-sizing: border-box;
   touch-action: none;
   /* iOSでのスクロール防止 */
 }
