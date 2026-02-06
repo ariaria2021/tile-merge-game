@@ -4,8 +4,8 @@
     background-color: #e5e7eb;
     /* 薄いグレー */
     border-radius: 8px;
-    width: min(100%, 500px);
-    aspect-ratio: 1 / 1;
+    width: 500px;
+    height: 500px;
     margin: 20px auto;
     padding: 15px;
     box-sizing: border-box;
@@ -42,7 +42,8 @@
 
 @media (max-width: 520px) {
     .boardContainer {
-        width: 100%;
+        width: 340px;
+        height: 340px;
         padding: 10px;
     }
 
