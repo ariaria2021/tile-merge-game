@@ -119,7 +119,7 @@ function App() {
     >
       <Header score={score} onReset={handleReset} />
 
-      <div style={{ position: 'relative', width: 'fit-content', margin: '0 auto' }}>
+      <div style={{ position: 'relative', width: '100%', maxWidth: '500px', margin: '0 auto' }}>
         <Board grid={grid} />
         <GameOverlay isGameOver={finished} onRetry={handleReset} />
       </div>
