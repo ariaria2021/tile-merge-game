@@ -1,4 +1,4 @@
-import type { Grid } from '../types';
+import type { Grid, Cell } from '../types';
 import { GRID_SIZE } from './gridUtils';
 
 // グリッドを右に90度回転
@@ -24,13 +24,13 @@ export const rotateLeft = (grid: Grid): Grid => {
 };
 
 // 1行を左に詰めてマージする処理
-export const processRow = (row: (import('../types').Cell | null)[]): { newRow: (import('../types').Cell | null)[], score: number } => {
+export const processRow = (row: (Cell | null)[]): { newRow: (Cell | null)[], score: number } => {
     // 1. nullを取り除く
-    let cells = row.filter((cell) => cell !== null) as import('../types').Cell[];
+    let cells = row.filter((cell) => cell !== null) as Cell[];
     let score = 0;
 
     // 2. マージ処理
-    const mergedCells: import('../types').Cell[] = [];
+    const mergedCells: Cell[] = [];
     let skip = false;
 
     for (let i = 0; i < cells.length; i++) {

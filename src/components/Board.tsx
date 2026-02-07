@@ -12,7 +12,7 @@ export const Board: React.FC<Props> = ({ grid }) => {
     const tiles = grid.flat().filter(cell => cell !== null);
 
     return (
-        <div className={styles.boardContainer} style={{ '--gap': '15px' } as React.CSSProperties}>
+        <div className={styles.boardContainer}>
             {/* 背景グリッド */}
             <div className={styles.gridContainer}>
                 {Array.from({ length: 16 }).map((_, i) => (

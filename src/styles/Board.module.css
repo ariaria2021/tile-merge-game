@@ -1,4 +1,8 @@
 /* Board.module.css */
+:root {
+    --gap: 15px;
+}
+
 .boardContainer {
     position: relative;
     background-color: #e5e7eb;
@@ -8,8 +12,7 @@
     max-width: 500px;
     aspect-ratio: 1 / 1;
     margin: 0 auto;
-    /* App.tsx側と合わせて自動 */
-    padding: 15px;
+    padding: var(--gap);
     box-sizing: border-box;
     touch-action: none;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -19,7 +22,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
-    gap: 15px;
+    gap: var(--gap);
     width: 100%;
     height: 100%;
 }
@@ -34,29 +37,33 @@
 
 .tileContainer {
     position: absolute;
-    top: 15px;
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
+    top: var(--gap);
+    left: var(--gap);
+    right: var(--gap);
+    bottom: var(--gap);
     z-index: 2;
     pointer-events: none;
 }
 
 @media (max-width: 520px) {
+    :root {
+        --gap: 10px;
+    }
+
     .boardContainer {
         width: 100%;
-        padding: 10px;
+        padding: var(--gap);
         margin: 0 auto;
     }
 
     .gridContainer {
-        gap: 10px;
+        gap: var(--gap);
     }
 
     .tileContainer {
-        top: 10px;
-        left: 10px;
-        right: 10px;
-        bottom: 10px;
+        top: var(--gap);
+        left: var(--gap);
+        right: var(--gap);
+        bottom: var(--gap);
     }
 }
